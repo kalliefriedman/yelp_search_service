@@ -5,14 +5,20 @@
 # specific entity (doctor name and address) and 
 # returns relevant data.
 
-# + Use the Yelp Search API (you'll need to register for a key)
 # + Return search result json if there is a search match. 
 # If no match is found, how would you propose a soft fallback solution? 
 # (no need to implement fallback).
 # + Place any keys in a config.ini and import using ConfigParser
-# + Uses `requests` library for http calls
+
+from os import environ
+from flask import (Flask, request,
+from requests import                    jsonify)
+
+app = Flask(__name__)
+
 
 # starting app
 if __name__ == '__main__':
     docname = raw_input("Enter the doctor's name: ")
     address = raw_input("Enter the address: ")
+    
