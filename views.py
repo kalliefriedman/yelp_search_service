@@ -1,4 +1,5 @@
 import ConfigParser
+from app import *
 
 SEARCH_URL = 'https://api.yelp.com/v3/businesses/search'
 
@@ -16,4 +17,3 @@ def make_api_request():
     # response = requests.request('GET', SEARCH_URL, headers=headers, params=url_params)
     # return response.json()
     return 'OK'
-    
