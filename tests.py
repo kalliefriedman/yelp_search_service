@@ -15,5 +15,11 @@ class WebService(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
         self.assertIn("homberg-chiropractic-and-wellness-knoxville", result.data)
 
+    # def testRouteLogic(self):
+    # """Faking API response data to isolate accuracy of route logic"""
+    #     result = self.client.get('/test?term=World%20of%20Health%20Chiropractor&location=Powell')
+    #     self.assertEqual(result.status_code, 200)
+    #     self.assertIn("homberg-chiropractic-and-wellness-knoxville", result.data)
+
 if __name__ == "__main__":
     unittest.main()

@@ -12,11 +12,12 @@ app = Flask(__name__)
 app.secret_key = "ABC"
 
 SEARCH_URL = 'https://api.yelp.com/v3/businesses/search'
+TEST_URL = '/test'
 
 
 @app.route('/search')
 def make_api_request():
-    """takes in a token, gets docname and address from form, and returns response"""
+    """Takes in term and address via URL parameters, and returns json object response data"""
     term = request.args.get('term')
     location = request.args.get('location')
     url_params = {"term": term, "location": location}
@@ -35,6 +36,29 @@ def make_api_request():
     json_response = jsonify(dict_response)
 
     return json_response
+
+@app.route('/test')
+def make_testing_request():
+    """takes in a token, gets docname and address from form, and returns response"""
+    term = request.args.get('term')
+    location = request.args.get('location')
+    url_params = {"term": term, "location": location}
+
+    Config = ConfigParser.ConfigParser()
+    Config.read('config.ini')
+    cred_dict = {}
+    for section_name in Config.sections():
+        for name, value in Config.items(section_name):
+            cred_dict[name] = value
+    bearer_token = cred_dict.get("bearer_token")
+    headers = {'Authorization': 'Bearer ' + bearer_token}
+
+    response = requests.request('GET', TEST_URL, headers=headers, params=url_params)
+    dict_response = response.json()
+    json_response = jsonify(dict_response)
+
+    return json_response
+
 
 # starting app
 if __name__ == '__main__':
