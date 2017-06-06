@@ -14,9 +14,11 @@ app.secret_key = "ABC"
 SEARCH_URL = 'https://api.yelp.com/v3/businesses/search'
 
 
-@app.route('/search-result/<term><location>')
-def make_api_request(term, location):
+@app.route('/search')
+def make_api_request():
     """takes in a token, gets docname and address from form, and returns response"""
+    term = request.args.get('term')
+    location = request.args.get('location')
     Config = ConfigParser.ConfigParser()
     Config.read('config.ini')
     cred_dict = {}
@@ -25,10 +27,11 @@ def make_api_request(term, location):
             cred_dict[name] = value
     url_params = {"term": term, "location": location}
     bearer_token = cred_dict.get("bearer_token")
-    print bearer_token
     headers = {'Authorization': 'Bearer ' + bearer_token}
     response = requests.request('GET', SEARCH_URL, headers=headers, params=url_params)
-    return response.json()
+    decoded_response = response.json()
+    print decoded_response
+    return "hi"
 
 # starting app
 if __name__ == '__main__':
