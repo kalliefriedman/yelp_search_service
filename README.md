@@ -1,6 +1,5 @@
 # Yelp Search
-Yelp Search is a 
-
+Yelp Search is a a basic python flask web service wrapper using python 2.7. It accepts an entity name and address as search inputs, and returns json search result if there is a search match. 
 
 # Technologies
 Backend: Python, Flask, Requests library, ConfigParser Libarary
