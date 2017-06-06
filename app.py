@@ -29,9 +29,9 @@ def make_api_request():
     bearer_token = cred_dict.get("bearer_token")
     headers = {'Authorization': 'Bearer ' + bearer_token}
     response = requests.request('GET', SEARCH_URL, headers=headers, params=url_params)
-    decoded_response = response.json()
-    print decoded_response
-    return "hi"
+    dict_response = response.json()
+    json_response = jsonify(dict_response)
+    return json_response
 
 # starting app
 if __name__ == '__main__':
