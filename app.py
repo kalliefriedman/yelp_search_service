@@ -14,6 +14,15 @@ app.secret_key = "ABC"
 SEARCH_URL = 'https://api.yelp.com/v3/businesses/search'
 TEST_URL = '/test'
 
+# feedback as follows:
+# could cache response in database or dictionary like redis
+# should define the interface
+# validate parameters that are passed in, that they are correct in format
+# separate out view and controller
+# don't put the ConfigParser object in a dictionary, work with the object directly
+# name the config file sections by service name
+# route could decide which function to use based on service
+# use mock and vcr for testing
 
 @app.route('/search')
 def make_api_request():
